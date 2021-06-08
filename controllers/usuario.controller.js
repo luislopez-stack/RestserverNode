@@ -1,8 +1,15 @@
 const { response } = require('express');
 
 const usuarioGET = (req, res = response) => {
+
+    const { nom, page, limit } = req.query;
+
+    //RESPUESTA
     res.json({
-        msg: 'Respuesta ok GET Controlador'
+        msg: 'Respuesta ok GET Controlador',
+        nom,
+        page,
+        limit
     });
 }
 
