@@ -1,5 +1,6 @@
 const express = require('express')
-var cors = require('cors')
+var cors = require('cors');
+const { dbConection } = require('../database/config');
 
 class Server {
 
@@ -7,6 +8,8 @@ class Server {
         this.routesUsuarioURl = '/api/usuarios';
 
         this.app = express();
+        //Conectar a DB
+        this.conetarDB();
 
         //Middelwares
         this.middelwares();
@@ -15,6 +18,9 @@ class Server {
         this.routes();
     }
 
+    async conetarDB() {
+        await dbConection();
+    }
 
     middelwares() {
 

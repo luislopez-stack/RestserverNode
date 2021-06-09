@@ -24,5 +24,5 @@ const dbConection = async() => {
 }
 
 module.exports = {
-    dbdbConection
+    dbConection
 }
