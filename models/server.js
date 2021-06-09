@@ -18,6 +18,7 @@ class Server {
         this.routes();
     }
 
+
     async conetarDB() {
         await dbConection();
     }
