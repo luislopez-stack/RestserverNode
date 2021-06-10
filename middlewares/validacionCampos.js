@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
 
-//Verificar errores
+//Verificar errores. Valida campos conforme a los middleware antes de entrar al controlador
 const validarCampos = (req, res, next) => {
 
     const errors = validationResult(req);
