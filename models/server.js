@@ -6,6 +6,7 @@ class Server {
 
     constructor() {
         this.routesUsuarioURl = '/api/usuarios';
+        this.authURL = '/api/auth';
 
         this.app = express();
         //Conectar a DB
@@ -37,6 +38,7 @@ class Server {
 
     routes() {
 
+        this.app.use(this.authURL, require('../routes/auth.route'));
         this.app.use(this.routesUsuarioURl, require('../routes/usuario.route'));
 
     }
