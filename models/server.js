@@ -7,6 +7,7 @@ class Server {
     constructor() {
         this.routesUsuarioURl = '/api/usuarios';
         this.authURL = '/api/auth';
+        this.spotifyURL = '/api/tokenSpotify';
 
         this.app = express();
         //Conectar a DB
@@ -40,6 +41,7 @@ class Server {
 
         this.app.use(this.authURL, require('../routes/auth.route'));
         this.app.use(this.routesUsuarioURl, require('../routes/usuario.route'));
+        this.app.use(this.spotifyURL, require('../routes/spotify.route'));
 
     }
 
