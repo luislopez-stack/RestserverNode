@@ -5,9 +5,16 @@ const { dbConection } = require('../database/config');
 class Server {
 
     constructor() {
-        this.routesUsuarioURl = '/api/usuarios';
-        this.authURL = '/api/auth';
-        this.spotifyURL = '/api/tokenSpotify';
+
+        this.URL = {
+            routesUsuarioURl: '/api/usuarios',
+            authURL: '/api/auth',
+            categoriasURL: '/api/categorias',
+            productosURL: '/api/productos',
+            buscaURL: '/api/buscar',
+            spotifyURL: '/api/tokenSpotify',
+        }
+
 
         this.app = express();
         //Conectar a DB
@@ -39,9 +46,12 @@ class Server {
 
     routes() {
 
-        this.app.use(this.authURL, require('../routes/auth.route'));
-        this.app.use(this.routesUsuarioURl, require('../routes/usuario.route'));
-        this.app.use(this.spotifyURL, require('../routes/spotify.route'));
+        this.app.use(this.URL.authURL, require('../routes/auth.route'));
+        this.app.use(this.URL.routesUsuarioURl, require('../routes/usuario.route'));
+        this.app.use(this.URL.categoriasURL, require('../routes/categorias.route'));
+        this.app.use(this.URL.productosURL, require('../routes/productos.route'));
+        this.app.use(this.URL.buscaURL, require('../routes/buscar.route'));
+        this.app.use(this.URL.spotifyURL, require('../routes/spotify.route'));
 
     }
 
