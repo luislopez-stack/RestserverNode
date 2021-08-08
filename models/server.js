@@ -1,5 +1,6 @@
 const express = require('express')
 var cors = require('cors');
+const fileUpload = require('express-fileupload');
 const { dbConection } = require('../database/config');
 
 class Server {
@@ -12,6 +13,7 @@ class Server {
             categoriasURL: '/api/categorias',
             productosURL: '/api/productos',
             buscaURL: '/api/buscar',
+            archivosURL: '/api/uploads',
             spotifyURL: '/api/tokenSpotify',
         }
 
@@ -42,6 +44,14 @@ class Server {
 
         //Lectura y parseo
         this.app.use(express.json());
+
+        // Carga de archivos
+        this.app.use(fileUpload({
+            useTempFiles: true,
+            tempFileDir: '/tmp/',
+            createParentPath: true
+        }));
+
     }
 
     routes() {
@@ -51,6 +61,7 @@ class Server {
         this.app.use(this.URL.categoriasURL, require('../routes/categorias.route'));
         this.app.use(this.URL.productosURL, require('../routes/productos.route'));
         this.app.use(this.URL.buscaURL, require('../routes/buscar.route'));
+        this.app.use(this.URL.archivosURL, require('../routes/uploads.route'));
         this.app.use(this.URL.spotifyURL, require('../routes/spotify.route'));
 
     }

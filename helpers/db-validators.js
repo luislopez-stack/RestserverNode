@@ -49,11 +49,22 @@ const validarProductoId = async(id = '') => {
     }
 }
 
+//Valida colecciones en el route uploads
+const validarColeccionesPermitidas = (coleccion = '', colecciones = []) => {
+
+    const colecionInclu = colecciones.includes(coleccion);
+    if (!colecionInclu) {
+        throw new Error(`Coleccion no incluida`);
+    }
+    return true;
+}
+
 
 module.exports = {
     validaRol,
     validaEmail,
     validaUsuariobyId,
     validarCategoriaId,
-    validarProductoId
+    validarProductoId,
+    validarColeccionesPermitidas
 }
